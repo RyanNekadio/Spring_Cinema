@@ -1,28 +1,17 @@
 package com.bnta.movies.models;
 
 public class Reply {
-
-    String message;
     private String title;
     private double rating;
     private int duration;
 
-    public Reply(String message, String title, double rating, int duration){
-        this.message = message;
+    public Reply(String title, double rating, int duration){
         this.title = title;
         this.rating = rating;
         this.duration = duration;
     }
 
     public Reply(){
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public String getTitle() {
