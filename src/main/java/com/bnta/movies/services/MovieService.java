@@ -32,4 +32,10 @@ public class MovieService {
         movieRepository.deleteById(id);
     }
 
+    public Movie updateMovie(Movie movie, long id){
+        movie.setId(id);
+        movieRepository.save(movie);
+        return movie;
+    }
+
 }

@@ -28,7 +28,7 @@ public class MovieController {
 
 //    Display a specified movie
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Reply> getMovie(@PathVariable long id) {
+    public ResponseEntity<Reply> getMovieById(@PathVariable long id) {
 
         Optional<Movie> movie = movieService.getMovieById(id);
 
@@ -46,15 +46,21 @@ public class MovieController {
         return movieService.getAllMovies();
     }
 
+//  Update a movie
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Movie> updateMovieById(@RequestBody Movie movie
+                                                 , @PathVariable long id){
+        return new ResponseEntity<>(movieService.updateMovie(movie, id), HttpStatus.OK);
+    }
+
 //    Delete a movie
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deleteMovie(@PathVariable long id){
+    public ResponseEntity<Void> deleteMovieById(@PathVariable long id){
         try {
             movieService.deleteMovie(id);
             return ResponseEntity.noContent().build(); // HTTP 204 No Content
         } catch (EmptyResultDataAccessException e) {
-            // Handle not found scenario
-            return ResponseEntity.notFound().build(); // HTTP 404 Not Found
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 

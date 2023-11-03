@@ -2,10 +2,10 @@ package com.bnta.movies.models;
 
 public class Reply {
     private String title;
-    private double rating;
+    private int rating;
     private int duration;
 
-    public Reply(String title, double rating, int duration){
+    public Reply(String title, int rating, int duration){
         this.title = title;
         this.rating = rating;
         this.duration = duration;
@@ -22,11 +22,11 @@ public class Reply {
         this.title = title;
     }
 
-    public double getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
