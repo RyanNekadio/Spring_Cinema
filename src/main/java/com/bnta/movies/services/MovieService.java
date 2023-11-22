@@ -38,4 +38,8 @@ public class MovieService {
         return movie;
     }
 
+    public List<Movie> getMoviesByMaxDuration(int maxDuration){
+        return movieRepository.findByDurationLessThan(maxDuration);
+    };
+
 }

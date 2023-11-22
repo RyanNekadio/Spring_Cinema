@@ -40,19 +40,27 @@ public class MovieController {
         return new ResponseEntity<>(reply, HttpStatus.OK);
     }
 
+//    ADVANCED EXTENSION - Return movies with a duration less than a specified value
 //    Display all movies
     @GetMapping
-    public List<Movie> getMovies(){
-        return movieService.getAllMovies();
+    public ResponseEntity<List<Movie>> getMovies(@RequestParam Integer maxDuration){
+        if (maxDuration != null){
+            return new ResponseEntity<>(
+                    movieService.getMoviesByMaxDuration(maxDuration), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
+        }
     }
 
-//  Update a movie
+//    EXTENSION TASK
+//    Update a movie
     @PatchMapping(value = "/{id}")
     public ResponseEntity<Movie> updateMovieById(@RequestBody Movie movie
                                                  , @PathVariable long id){
         return new ResponseEntity<>(movieService.updateMovie(movie, id), HttpStatus.OK);
     }
 
+//    EXTENSION TASK
 //    Delete a movie
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteMovieById(@PathVariable long id){
